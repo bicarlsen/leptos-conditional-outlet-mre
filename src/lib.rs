@@ -8,7 +8,6 @@ pub fn App() -> impl IntoView {
             <Routes fallback=|| "An error occurred">
                 <ParentRoute path=StaticSegment("") view=Index>
                     <Route path=StaticSegment("") view=Default/>
-                    <Route path=StaticSegment("home") view=Home/>
                 </ParentRoute>
             </Routes>
         </Router>
@@ -25,7 +24,12 @@ fn Index() -> impl IntoView {
 
         {move || {
             if show_outlet() {
-                view! { <Outlet/> }.into_any()
+                view! {
+                    <div>
+                        <Outlet/>
+                    </div>
+                }
+                    .into_any()
             } else {
                 view! { <div>"No outlet"</div> }.into_any()
             }
@@ -35,10 +39,5 @@ fn Index() -> impl IntoView {
 
 #[component]
 fn Default() -> impl IntoView {
-    view! { "defualt" }
-}
-
-#[component]
-fn Home() -> impl IntoView {
-    view! { "home" }
+    view! { "Defualt" }
 }
